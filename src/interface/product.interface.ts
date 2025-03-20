@@ -6,3 +6,9 @@ export interface IProduct extends Document {
     description: string;
     price: number;
 }
+
+export interface InputCreateProductDto {
+    name?: string;
+    description?: string;
+    price?: number;
+}

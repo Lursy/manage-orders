@@ -6,3 +6,9 @@ export interface IUser extends Document {
     email: string;
     phoneNumber: string;
 }
+
+export interface InputCreateUserDto {
+    name?: string;
+    email?: string;
+    phoneNumber?: string;
+}

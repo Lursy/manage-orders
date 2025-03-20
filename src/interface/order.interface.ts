@@ -6,3 +6,7 @@ export interface IOrder extends Document {
     totalPrice: number;
     createdAt: Date;
 }
+export interface InputCreateOrderDto {
+    userId?: Types.ObjectId;
+    totalPrice?: number;
+}

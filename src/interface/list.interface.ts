@@ -5,3 +5,8 @@ export interface IList extends Document {
     orderId: Types.ObjectId;
     productId: Types.ObjectId;
 }
+
+export interface InputCreateListDto {
+    orderId?: Types.ObjectId;
+    productId?: Types.ObjectId;
+}

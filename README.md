@@ -69,7 +69,7 @@ fetch('http://localhost/user/orders', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    "userId": "67dd9c45f1a749aae18674e6", // esse id é enviado como _id ao criar usuário
+    "userId": "67dd9c45f1a749aae18674e6",
 })
 ```
 ```js
@@ -109,6 +109,6 @@ fetch('http://localhost/order/get', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    "orderId": "67ddc118611d59986bf8070c", // esse id é enviado como _id ao criar usuário
+    "orderId": "67ddc118611d59986bf8070c",
 })
 ```

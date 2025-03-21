@@ -3,7 +3,7 @@ import { User } from "../models/user.model";
 
 export class UserCore {
     static creteUser = async (userDto: InputCreateUserDto) => {
-        const user = new User(userDto);
+        const user = await User.create(userDto);
 
         return user
     }

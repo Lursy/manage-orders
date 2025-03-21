@@ -95,7 +95,7 @@ fetch('http://localhost/order/create', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    "userId": "67ddc0e6611d59986bf80708", // esse id é enviado como _id ao criar usuário
+    "userId": "67ddc0e6611d59986bf80708",
     "productIds": ["67dda08fe46b9fe72b8db025", ...] // lista de ID de produtos do pedido
 })
 ```

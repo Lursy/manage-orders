@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { InputCreateOrderDto, InputFilterOrderDto } from "../interface/order.interface";
 import { Order } from "../models/order.model";
 import { User } from "../models/user.model";
@@ -6,27 +7,44 @@ export class OrderCore {
     static createOrder = async (orderDto: InputCreateOrderDto) => {
         const userExists = await User.exists({ _id: orderDto.userId });
 
-        if(!userExists) throw new Error("missing reference");
+        if (!userExists) throw new Error("reference not found");
 
         const order = await Order.create(orderDto);
 
         return order;
     }
 
+    static getOrder = async (orderDto: InputFilterOrderDto) => {
+        const userExists = await User.exists({ _id: orderDto.userId });
+
+        if (!userExists) throw new Error("reference not found");
+
+        const order = await Order.find(orderDto, "-userId -__v");
+
+        return order;
+    }
+
     static getSpent = async (orderDto: InputFilterOrderDto) => {
         const result = await Order.aggregate([
-            { $match: { 
-                _id: orderDto._id,
-                userId: orderDto.userId
-             } }, // Filtra os pedidos pelo userId
+            {
+                $match: {
+                    userId: new Types.ObjectId(orderDto.userId)
+                }
+            },
             {
                 $group: {
-                    _id: null,  // Não agrupar por um campo específico
-                    totalSpent: { $sum: "$totalPrice" }  // Soma os valores dos pedidos
+                    _id: null,  
+                    totalSpent: { $sum: "$totalPrice" },  // Soma os valores dos pedidos
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    totalSpent: { $round: ["$totalSpent", 2] },
                 }
             }
         ]);
 
-        return { totalSpent: result.length == 0 ? 0 : result[0].totalSpent };
+        return result[0];
     }
 }

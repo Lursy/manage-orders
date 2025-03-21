@@ -1,4 +1,4 @@
-import { InputCreateOPDto, InputFindOPDto } from "../interface/op.interface";
+import { InputCreateOPDto, InputFilterOPDto } from "../interface/op.interface";
 import { OrderProduct } from "../models/op.model";
 import { Order } from "../models/order.model";
 import { Product } from "../models/product.model";
@@ -10,7 +10,7 @@ export class OrderProductCore {
         }
 
         const orderExist = await Order.exists({ _id: OPDto.orderId });
-        if (!orderExist) throw new Error("missing reference");
+        if (!orderExist) throw new Error("reference not found");
 
         const existingProducts = await Product.find({ _id: { $in: OPDto.productIds } })
             .select("_id")
@@ -29,30 +29,27 @@ export class OrderProductCore {
             }));
 
         if(query.length != purchasedProducts.size){
-            const unregistered = query.filter(productId => !purchasedProducts.has(productId.product));
-
             info = {
                 state: "warnning",
-                description: "unregistered product IDs",
-                unregistered
+                description: "unregistered product ID",
             }
         }
 
         const orderProducts = await OrderProduct.insertMany(query);
 
-        return { info, list: orderProducts };
+        return { info, orderList: orderProducts };
     };
 
-    static findProductsInOrder = async (findDto: InputFindOPDto) => {
-        const orderExist = Order.exists({ _id: findDto.orderId });
+    static findProductsInOrder = async (findDto: InputFilterOPDto) => {
+        let order = await Order.findById(findDto.orderId).lean();
 
-        if (!orderExist) throw new Error("missing reference");
+        if (!order) throw new Error("reference not found");
 
         const products = await OrderProduct.find(findDto)
             .populate("product")
             .select("-_id product")
             .lean();
 
-        return products;
+        return {...order, products};
     }
 }

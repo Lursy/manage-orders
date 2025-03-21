@@ -1,8 +1,8 @@
 import { OrderProductCore } from "../data/op.dao";
-import { InputCreateOPDto, InputFindOPDto } from "../interface/op.interface";
+import { InputCreateOPDto, InputFilterOPDto } from "../interface/op.interface";
 
 export class OrderProductService {
-    static findProductsInOrder = async (findDto: InputFindOPDto) => {
+    static findProductsInOrder = async (findDto: InputFilterOPDto) => {
         if(!findDto.orderId) throw new Error("missing parameters");
 
         return await OrderProductCore.findProductsInOrder(findDto);

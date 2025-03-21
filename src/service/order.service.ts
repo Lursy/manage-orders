@@ -12,8 +12,18 @@ export class OrderService {
         return order;
     }
     
+    static getOrders = async (orderDto: InputFilterOrderDto) => {
+        if(!orderDto._id && !orderDto.userId){
+            throw new Error("missing parameters");
+        }
+
+        const order = await OrderCore.getOrder(orderDto);
+
+        return order;
+    }
+    
     static getSpent = async (spentDto: InputFilterOrderDto) => {
-        if(!spentDto._id && !spentDto.userId){
+        if(!spentDto.userId){
             throw new Error("missing parameters");
         }
 

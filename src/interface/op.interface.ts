@@ -9,8 +9,9 @@ export interface IOP extends Document {
 export interface InputCreateOPDto {
     orderId?: Types.ObjectId;
     productIds?: Types.ObjectId[];
+    userId?: Types.ObjectId;
 }
 
-export interface InputFindOPDto {
+export interface InputFilterOPDto {
     orderId?: Types.ObjectId;
 }

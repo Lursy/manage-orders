@@ -15,7 +15,7 @@
 - instalando dependencias  
 `npm install`
 
-- crie um arquivo .env com a URI
+- crie um arquivo .env com a URI   
 exemplo de .env:
 ```env
 URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryWrites=true"

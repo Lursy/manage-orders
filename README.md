@@ -20,7 +20,7 @@ exemplo de .env:
 ```env
 URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryWrites=true"
 ```
-- executar
+- executar   
  `npm run dev`
 ---  
 ### rotas

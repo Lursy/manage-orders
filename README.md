@@ -25,7 +25,7 @@ URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryW
 ---  
 ### rotas
 |Method|endpoint|descrição|
-|:----:|:------:|:-------:|
+|:----:|:------|:-------:|
 |POST|/user/create/|registrar cliente|
 |POST|/user/orders/|exibir pedidos de um usuário|
 |POST|/user/spent/|exibir valor total gasto por usuário|

@@ -15,11 +15,7 @@
 - instalando dependencias  
 `npm install`
 
-- crie um arquivo .env com a URI   
-exemplo de .env:
-```env
-URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryWrites=true"
-```
+- crie um arquivo .env com a URI  ([exemplo](https://github.com/Lursy/manage-orders/blob/main/.env.example))  
 - executar   
  `npm run dev`
 ---  
@@ -38,7 +34,7 @@ URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryW
 |:----:|:------:|
 | missing parameters | 400 |
 | reference not found | 400 |
-| not found | 400 |
+| not found | 404 |
 | server error | 500 |
 | Object | 200 |
 ---  

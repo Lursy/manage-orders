@@ -33,6 +33,15 @@ URI="mongodb+srv://<user>:<password>@nome.<host>.mongodb.net/ManagerOrder?retryW
 |POST|/order/create/|registrar pedido|
 |POST|/order/get/|exibir pedido|
 ---  
+### respostas  
+|response|status|
+|:----:|:------:|
+| missing parameters | 400 |
+| reference not found | 400 |
+| not found | 400 |
+| server error | 500 |
+| Object | 200 |
+---  
 ### requisições
 ```js
 // criar usuário
